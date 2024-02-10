@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div class="cont">
+        <div class="wrap">
+            <div class="form">
+                <div class="searchbox"><input type="search" name="search" id="search" placeholder="Search Your City..."></div>
+                <div class="searchbtn" onclick="citysearch()"><img src="img/search.png" alt="search btn"></div>
+            </div>
+            <div class="errormsg">This City Not Found</div>
+            <div class="weathercont">
+                <div class="weatherimg">
+                    <img src="img/sun.png" alt="Image" id="typeimg">
+                </div>
+                <div class="weathervalue" id="weathervalue">
+                    55°C
+                </div>
+                <div class="weathercity" id="weathercity">
+                    New York
+                </div>
+                <div class="humiditywind">
+                        <div class="humidity">
+                            <img src="img/humidity.png" alt="humidity"> 
+                            <div class="humiditycont">
+                                <div class="humidityvalue" id="humidityvalue">
+                                    48%
+                                </div>
+                                <div>Humidity</div>
+                            </div>
+                            
+                        </div>
+                        <div class="wind">
+                            <img src="img/wind.png" alt="wind"> 
+                            <div class="windcont">
+                                <div class="windvalue" id="windvalue">
+                                    48Km/hr
+                                </div>
+                                <div>Wind Speed</div>
+                            </div>
+                            
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    const api="3957473248d1e1e7b72afe06a6e88846";
+    const apiUrl="https://api.openweathermap.org/data/2.5/weather";
+    
+    async function checkWeather(city){
+
+        const response =await fetch(apiUrl+"?q="+city+"&appid="+api);
+        var data=await response.json();
+        if(data.cod=="404"){
+            document.getElementsByClassName("errormsg")[0].style.display="block";
+            return;
+        }
+        console.log(data);
+        document.getElementById("weathervalue").innerHTML=data.main.temp+"°C";
+        document.getElementById("weathercity").innerHTML=data.name;
+        document.getElementById("humidityvalue").innerHTML=data.main.humidity +"%";
+        document.getElementById("windvalue").innerHTML=data.wind.speed +"Km/hr";
+        var img=document.getElementById("typeimg");
+        console.log(data.weather[0].main);
+        if(data.weather[0].main=="Clear"){
+            img.src="img/1clearsky.png";
+        }else if(data.weather[0].main=="Few Clouds"){
+            img.src="img/2fewclouds.png";
+        }else if(data.weather[0].main=="Scattered Clouds"){
+            img.src="img/3scatteredclouds.png";
+        }else if(data.weather[0].main=="Broken Clouds"){
+            img.src="img/4brokenclouds.png";
+        }else if(data.weather[0].main=="Shower Rain"){
+            img.src="img/5showerrain.png";
+        }else if(data.weather[0].main=="Rain"){
+            img.src="img/6rain.png";
+        }else if(data.weather[0].main=="Thunderstorm"){
+            img.src="img/7thunderstorm.png";
+        }else if(data.weather[0].main=="Snow"){
+            img.src="img/8snow.png";
+        }else if(data.weather[0].main=="Mist" || data.weather[0].main=="Haze"){
+            img.src="img/9mist.png";
+        }else {
+            img.src="img/default.png";
+        }
+        document.getElementsByClassName("weathercont")[0].style.display="flex";
+        document.getElementById("search").value="";
+        document.getElementsByClassName("errormsg")[0].style.display="none";
+    }
+    function citysearch(){
+        const cityname=document.getElementById("search").value;
+        checkWeather(cityname);
+        
+
+    }
+</script>

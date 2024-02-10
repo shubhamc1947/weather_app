@@ -1,0 +1,146 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.cont{
+    background-color: #2D3250;
+    width: 100%;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap{
+    padding:1.5rem;
+    border-radius: 10px;
+    border:1px solid;
+    background-color: #A7D397;
+    background-image: linear-gradient(135deg, hsl(163.23deg 73.52% 57.06%) ,hsl(226.83deg 23.43% 34.31%));
+}
+.form{
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    gap:1rem;
+}
+.form>.searchbox{
+
+}
+.form>.searchbox>input{
+    width: 300px;
+    height: 40px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    padding-left: 1rem;
+    font-size: 1.1rem;
+}
+.form>.searchbtn{
+    background: aliceblue;
+  padding: 10px;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  cursor:pointer;
+}
+
+.form>.searchbtn>img{
+    height:20px;
+    width:20px;
+}
+
+.errormsg{
+    text-align:center;
+    color:red;
+    display:none;
+}
+.weathercont{
+    margin-top:1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap:2rem;
+    color:aliceblue;
+    display: none;
+}
+.weatherimg>img{
+    width:70px;
+}
+.weathervalue{
+    font-size:3rem;
+}
+
+.weathercity{
+    font-size:3rem;
+    color:aliceblue;
+}
+
+.humiditywind{
+    display:flex;
+    gap:1rem;
+}
+
+.humiditywind img{
+    width:40px;
+}
+.humidity,.wind{
+    display: flex;
+    gap:1rem;
+}
+
+
+/* media css  */
+@media only screen and (max-width: 421px) {
+    .form>.searchbox>input{
+        width: 250px;
+        
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .form>.searchbox>input{
+        width: 200px;
+        
+    }
+    .weathervalue {
+        font-size: 2.5rem;
+    }
+    .weathercity {
+        font-size: 2.5rem;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    .wrap{
+        padding:0.6rem;
+    }
+    .weathercont {
+        gap: 1rem;
+    }
+}
+@media only screen and (max-width: 300px) {
+    .humiditywind img{
+        width:30px;
+    }
+    .weathervalue {
+        font-size: 2rem;
+    }
+    .weathercity {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 278px) {
+    .form {
+        height: 60px;
+        gap: 0.5rem;
+    }
+    .humiditywind {
+        flex-direction: column;
+     
+    }
+}
